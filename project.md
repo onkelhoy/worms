@@ -20,6 +20,7 @@ dotenv.config()
 ```
 
 As I wanted clear code I seperated config to actual server stuff i.e. routing etc. And this you should do at all time of course! So the structure of the project is as follows:
+```
 .
 +-- config
 |   +-- server.config.js
@@ -43,7 +44,7 @@ As I wanted clear code I seperated config to actual server stuff i.e. routing et
 +-- README.md
 +-- server.js
 +-- webpack.config.js
-
+```
 
 ### Production
 
@@ -54,5 +55,4 @@ As I wanted clear code I seperated config to actual server stuff i.e. routing et
 
 
 
-
-## Starting With The Game
+# Starting With The Game
