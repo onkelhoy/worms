@@ -1,0 +1,37 @@
+{
+  "name": "worms",
+  "version": "1.0.0",
+  "description": "Mobile online worms game",
+  "main": "server.js",
+  "babel": {
+    "presets": ["es2015"]
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onkelhoy/worms.git"
+  },
+  "keywords": [
+    "worms",
+    "multiplayer",
+    "game"
+  ],
+  "author": "Henry Pap <onkelhoy@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onkelhoy/worms/issues"
+  },
+  "homepage": "https://github.com/onkelhoy/worms#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "css-loader": "^0.28.11",
+    "node-sass": "^4.9.0",
+    "pug": "^2.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.3",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
