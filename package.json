@@ -4,10 +4,14 @@
   "description": "Mobile online worms game",
   "main": "server.js",
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "cross-env MODE=prod node server.js",
+    "build": "cross-env MODE=prod webpack",
+    "dev": "cross-env MODE=dev node server.js"
   },
   "repository": {
     "type": "git",
@@ -28,10 +32,26 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "css-loader": "^0.28.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.0",
     "pug": "^2.0.3",
+    "pug-html-loader": "^1.1.5",
+    "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cross-env": "^5.1.5",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "p5": "^0.6.1",
+    "socket-io": "^1.0.0",
+    "webpack-dev-middleware": "^3.1.3",
+    "webpack-hot-middleware": "^2.22.2"
   }
 }

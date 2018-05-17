@@ -1,0 +1,2 @@
+import './style/game.scss'
+
