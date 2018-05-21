@@ -1,7 +1,6 @@
 import GameObject from './GameObject'
 import { Vector2 } from '../geometry/Vector'
 import { Random, Map } from '../util/Helper'
-import Game from './game'
 
 export default class Camera extends GameObject {
   /**
@@ -12,7 +11,7 @@ export default class Camera extends GameObject {
    * @param {Object} settings 
    */
   constructor (x, y, {
-    width = Game.width, height = Game.height
+    width = window.innerWidth, height = window.innerHeight
   } = {}) {
     super(x, y)
 
@@ -24,6 +23,8 @@ export default class Camera extends GameObject {
     this.desired = undefined
     this.offset = null
     this.oldscale = 1
+    this.reset = false
+    this.drag = {x:0,y:0}
 
     this.offset2 = {x:0, y:0}
     this.shake = {x: 0, y: 0, shaking: false}
@@ -56,6 +57,24 @@ export default class Camera extends GameObject {
     this.offset = Vector2.toVector({ x: screenOffset.x - boundaryOffset.x, y: screenOffset.y - boundaryOffset.x })
   }
 
+  Drag (drag) {
+    if (drag === null) {
+      this.offset2.x += this.drag.x
+      this.offset2.y += this.drag.y 
+
+      this.drag = {x:0,y:0}
+      return
+    }
+    this.drag.x = Math.cos(drag.angle) * drag.distance
+    this.drag.y = Math.sin(drag.angle) * drag.distance
+  }
+  /**
+   * Resets the offset to its original position
+   */
+  Reset () {
+    this.reset = true 
+  }
+
   Shake (duration = 10, magnitude = 4) {
     this.shake.shaking = true 
     this.shake.start = new Date().getTime()
@@ -80,7 +99,18 @@ export default class Camera extends GameObject {
       } // else { console.log(difference, this.shake.duration);}
     }
 
-    let sf = Map(scale, 1, 2.5, 0, 1.5)
+    let sf = scale - 1 // scale -> [1, 2.5]
+
+    if (this.reset) {
+      this.offset2.x *= .8
+      this.offset2.y *= .8
+
+      if (Math.abs(this.offset2.x) < 1) this.offset2.x = 0
+      if (Math.abs(this.offset2.y) < 1) this.offset2.y = 0
+
+      if (this.offset2.x === 0 && this.offset2.y === 0)
+        this.reset = false
+    }
     
     ctx.beginPath()
     ctx.save()
@@ -88,8 +118,8 @@ export default class Camera extends GameObject {
     // ctx.translate(this.w*sf*10, 0)
     ctx.scale(scale, scale)
     ctx.translate(
-      -this.x + this.shake.x - this.offset2.x - this.w*sf/(2*scale), 
-      -this.y + this.shake.y - this.offset2.y - this.h*sf/(2*scale)
+      -this.x + this.shake.x - (this.offset2.x + this.drag.x) - this.w*sf/(2*scale), 
+      -this.y + this.shake.y - (this.offset2.y + this.drag.y) - this.h*sf/(2*scale)
     )
 
     this.oldscale = scale

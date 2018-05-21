@@ -1,17 +1,20 @@
 import { Vector2 as Vector } from '../geometry/Vector'
-import Game from '../util/game'
-let touches = {joystick: null, button: null, zoom: {value: 1, start: 0, list: []}}
+let touches = {joystick: null, button: null, zoom: {startTime: new Date().getTime(), value: 1, start: 0, list: []}}
 let knob = {small: 25, big: 45}
+let Game = {width: 0, height: 0}
 
 class Event {
   /**
    * initialize the events on canvas
    * @param {DOM} canvas 
    */
-  static init (canvas) {
-    canvas.addEventListener('touchstart', handleStart, false)
-    canvas.addEventListener('touchend', handleEnd, false)
-    canvas.addEventListener('touchmove', handleMove, false)
+  static init (GAME) {
+    GAME.canvas.addEventListener('touchstart', handleStart, false)
+    GAME.canvas.addEventListener('touchend', handleEnd, false)
+    GAME.canvas.addEventListener('touchmove', handleMove, false)
+    GAME.canvas.addEventListener('touchcancel', handleEnd)
+
+    Game = GAME
   }
   static get Touches () {
     return touches
@@ -49,8 +52,10 @@ function handleEnd (e) {
     else 
       for (let j=0; j<touches.zoom.list.length; j++)
         if (touches.zoom.list[j].identifier === touch.identifier) {
-          if (touches.zoom.list.length === 2)
+          if (touches.zoom.list.length === 2) {
             touches.zoom.value = TouchController.zoom
+            touches.zoom.startTime = new Date().getTime()
+          }
           touches.zoom.list.splice(j, 1)
           j--
         }
@@ -117,7 +122,9 @@ class TouchController {
   }
   static get drag () {
     if (touches.zoom.list.length !== 1)
-      return {angle:0,distance:0}
+      return null
+    if (new Date().getTime() - touches.zoom.startTime < 500)
+      return null
     
     return Vector.Delta(touches.zoom.list[0].start, touches.zoom.list[0])
   }
