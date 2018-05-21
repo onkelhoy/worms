@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const { rooms } = require('../events/main')
 
 router.route('/')
-  .get((req, res) => {
-    res.send('hello henry')
-  })
-  .post((req, res) => {
-    res.end('bajs')
+  .get(function (req, res) {
+    res.render('menu/home.pug', {
+      title: 'Hello Henry',
+      nsps: rooms()
+    })
   })
 
 module.exports = router

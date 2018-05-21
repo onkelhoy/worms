@@ -1,0 +1,17 @@
+h3 Game List 
+
+ul.gamelist
+  if (nsps.length > 1)
+    each nsp in nsps 
+      if (nsp !== '/')
+        li
+          a(href='/lobby'+nsp)=nsp.replace('/', '')
+  else 
+    li no current games at the moment
+
+//- don't care about styles just yet 
+button.game-config create new game
+
+div.game-config.hide
+  input(type="text" class='name' placeholder='Name of Game')
+  button.create-game Create Game

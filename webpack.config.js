@@ -13,6 +13,11 @@ const config = {
       'webpack-hot-middleware/client',
       './src/menu.js'
     ],
+    lobby: [
+      'webpack/hot/dev-server',
+      'webpack-hot-middleware/client',
+      './src/lobby.js'
+    ]
   },
   output: {
     path: path.join(__dirname, 'public'),
@@ -32,8 +37,7 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 }
 

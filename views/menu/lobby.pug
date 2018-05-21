@@ -1,0 +1,17 @@
+extends ./main.pug 
+
+block content 
+  h1 Welcome to lobby
+
+  div.chat
+    div.messages
+    textarea(cols="30", rows="5" placeholder='say something')
+  div.popup.hide
+    h3
+    p
+
+block scripts 
+  script.
+    let socket = io('/#{id}')
+    
+  script(src="/js/lobby.bundle.js")

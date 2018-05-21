@@ -1,0 +1,10 @@
+extends ./main.pug
+
+block scripts 
+  script.
+    let socket = io.connect(window.location.href)
+  script(src="/js/menu.bundle.js")
+
+block content 
+  h1 Welcome to Menu
+  include ./gamelist.pug

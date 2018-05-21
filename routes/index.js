@@ -2,12 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 router.use('/game', require('./game'))
+router.use('/lobby', require('./lobby'))
+router.use('/', require('./menu'))
 
-router.route('/')
-  .get(function (req, res) {
-    res.render('menu/main.pug', {
-      title: 'Hello Henry'
-    })
-  })
-
+router.all('*', (req, res) => {
+  res.end('404 page not found')
+})
 module.exports = router

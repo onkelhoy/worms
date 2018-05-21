@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+
 module.exports = function (default_config) {
   let config = default_config
 
@@ -6,6 +8,7 @@ module.exports = function (default_config) {
     publicPath: config.output.publicPath
   }
   config.devtool = 'source-map'
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
 
   return config
 }

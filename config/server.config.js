@@ -1,5 +1,6 @@
 const express = require('express')
 const bparser = require('body-parser')
+const session = require('express-session')
 const path = require('path')
 const dotenv = require('dotenv')
 const app = express()
@@ -8,6 +9,11 @@ dotenv.config()
 app.set('port', process.env.SERVER_PORT) // setting it to quick access
 
 // setting the use-ings
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false, 
+  saveUninitialized: false
+}))
 app.use(bparser.json())
 app.use(bparser.urlencoded({
   extended: true
