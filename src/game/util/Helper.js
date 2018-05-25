@@ -20,6 +20,22 @@ const Lerp = function (a, b, t) { // could also use the Map function M(t,0,1,a,b
   return a + (b - a) * t
 }
 
+
+/**
+ * Loads an image from url with promise
+ * 
+ * @param {String} url
+ * @returns {Promise} 
+ */
+const LoadImage = function (url) {
+  let img = new Image()
+  img.src = url
+
+  return new Promise(function (resolve, reject) {
+    img.onerror = reject 
+    img.onload = () => resolve(img)
+  })
+}
 /**
  * Iterates object to the point it mets a leaf node, leaf in this case is number,string,array
  * with key, value, path
@@ -96,5 +112,5 @@ const Gravity = .4
 const Friction = .8
 export {
   Map, Lerp, Random, Gravity, Friction,
-  ObjectLeafs 
+  ObjectLeafs, LoadImage
 }

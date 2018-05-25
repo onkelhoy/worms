@@ -18,11 +18,23 @@ class Game {
     pre = pre_render
     cam = new Camera(0, 0, {width:canvas.width, height:canvas.height})
   }
-
+  
   static noLoop () {
     cancelAnimationFrame(_loop)
   }
-
+  /**
+   * Loads an image synchronously  
+   * @param {String} src
+   * @returns {Promise} 
+   */
+  static async LoadImage (src) {
+    return new Promise (function (resolve, reject) {
+      let img = new Image()
+      img.src = src
+      img.onerror = reject
+      img.onload = e => resolve(img)
+    })
+  }
   static loop () {
     cam.Drag(Controller.drag)
     upd()
@@ -38,8 +50,8 @@ class Game {
     _loop = requestAnimationFrame(Game.loop)
   }
   // getters
-  static get width ()  { return canvas.width }
-  static get height () { return canvas.height }
+  static get width ()  { return canvas.width || window.innerWidth }
+  static get height () { return canvas.height || window.innerHeight }
   static get canvas () { return canvas }
   static get Camera () { return cam }
 
