@@ -35,7 +35,7 @@
     "css-loader": "^0.28.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.11.0",
     "nodemon": "^1.17.4",
     "pug": "^2.0.3",
     "pug-html-loader": "^1.1.5",

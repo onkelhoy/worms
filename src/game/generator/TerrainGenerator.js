@@ -27,7 +27,9 @@ export default class TerrainGenerator {
     // Check options values
     this.options = Object.assign({}, DEFAULT_OPTIONS, opts)
     if (this.options.width % 2 !== 0 || this.options.height % 2) {
-      throw new Error('Terrain width and height should be even')
+      // throw new Error('Terrain width and height should be even')
+      this.options.width = Math.ceil(this.options.width)
+      this.options.height = Math.ceil(this.options.height)
     }
     if (!this.options.terrainTypeImg) {
       throw new Error('Required terrainTypeImg option must be an HTMLImageElement(or a CanvasImageSource)')

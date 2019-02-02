@@ -26,15 +26,16 @@ function intialize () {
   World.background = 81
 
   
-  load(['/content/MapBase_center_1.png'])
+  load(['MapBase_center_1.png'])
 }
 async function load (images) {
   //return await World.LoadImage(path)
 
-  images = images.map(v => World.LoadImage(v))
+  images = images.map(v => World.LoadImage('/content/' + v))
   images = await Promise.all(images)
 
   img = images[0]
+
   World.loop()
 }
 

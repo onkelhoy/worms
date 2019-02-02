@@ -106,7 +106,13 @@ function GeneratePoints (shape, distance, maxAngle) {
   } else if (shape instanceof Element) {
     canvas = shape
     ctx = canvas.getContext('2d')
-  } else throw new Error('shape must either be Image or Canvas DOM element')
+  } else if (shape instanceof ImageData) {
+    let d = getCanvas(shape.width, shape.height)
+    canvas = d.canvas
+    ctx = d.ctx
+    ctx.putImageData(shape, 0, 0)
+  }
+  else throw new Error('shape must either be Image or Canvas DOM element')
 
 
   // now loop it
@@ -116,19 +122,21 @@ function GeneratePoints (shape, distance, maxAngle) {
   let polygons = [], checks = []
   for (let y=0; y<ysteps; y++) {
   for (let x=0; x<xsteps; x++) {
-    if (checks[y] && checks[y][x])
-      continue // already checked this one 
+  //   if (checks[y] && checks[y][x])
+  //     continue // already checked this one 
     
-    let pixels = ctx.getImageData(x-1, y-1, 3, 3)
+    // THIS IS NOT GOOD!
+    // LOAD ALL PIXELS AT ONCE : from there gather correct information ! 
+    // let pixels = ctx.getImageData(x-1, y-1, 3, 3)
     
-    if (isEdge(pixels)) {
-      let polygon = generatePolygon (
-        distance, maxAngle, x, y, 
-        checks, ctx, shape.width, shape.height
-      )
-      if (polygon.length > 2)
-        polygons.push(polygon)
-    }
+  //   // if (isEdge(pixels)) {
+  //   //   let polygon = generatePolygon (
+  //   //     distance, maxAngle, x, y, 
+  //   //     checks, ctx, shape.width, shape.height
+  //   //   )
+  //   //   if (polygon.length > 2)
+  //   //     polygons.push(polygon)
+  //   // }
   }}
   return polygons
 }
@@ -141,6 +149,19 @@ export default class Map {
   }
 
   /**
+   * 
+   * @param {Number} width 
+   * @param {Number} height 
+   * @param {Number} distance 
+   * @param {Image} image 
+   */
+  static async GeneratePolygon (width, height, distance, image) {
+    let polygons = await GeneratePoints(image, distance, 0)
+
+    return polygons
+  }
+
+  /**
    * distance, maxAngle, mask, texture, characture {width,height,number}
    * border {color,thickness}
    * 
@@ -148,11 +169,12 @@ export default class Map {
    * @param {Number} height 
    * @param {Object} config 
    */
-  static async Generate (width, height, {
-    distance = 10, maxAngle = 0, mask = '/content/type-3.png',
-    texture = '/content/ground.png', characture = { width:50, height:80, number:8},
-    border = { color:'#aa3300', thickness:8}
+  static async GenerateTerrain (width, height, {
+    mask = '/content/type-3.png', texture = '/content/ground.png', 
+    characture = { width:50, height:80, number:8},
+    border = { color:'#aa3300', thickness:8 }
   } = {}) {
+    console.log('Generating map...')
     const tg_config = { terrainTypeImg: mask, width, height }
     const tg = await TerrainGenerator.fromImgUrl(tg_config)
 
@@ -165,21 +187,12 @@ export default class Map {
     const tr = await TerrainRenderer.fromImgUrl(terrainShape.canvas, tr_config)
     const { playerPositions, canvas } = tr.drawTerrain(Math.random())
 
-    let polygon = await GeneratePoints(terrainShape.canvas, distance, maxAngle)
+    // terrain : image
     let terrain = await LoadImage(canvas.toDataURL())
+    // terrain : shape (vs is weird)
+    let terrain_small = terrainShape.terr
 
-    let bajs = getCanvas(terrainShape.terr.width, terrainShape.terr.height)
-    bajs.ctx.putImageData(terrainShape.terr, 0, 0)
-    // bajs.ctx.moveTo(tg.terrainTypePoints.fg[0], tg.terrainTypePoints.fg[1])
-    // for (let p of tg.terrainTypePoints.fg) {
-    //   bajs.ctx.lineTo(p[0], p[1])
-    // }
-    // bajs.ctx.strokeStyle = 'white'
-    // bajs.ctx.stroke()
-    download(bajs.canvas)
-    download(canvas)
-
-    return {polygon, terrain, playerPositions}
+    return { terrain, playerPositions, terrain_small }
   }
 
   draw (ctx) {

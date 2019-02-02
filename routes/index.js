@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 router.use('/game', require('./game'))
+router.use('/test', require('./test'))
 router.use('/lobby', require('./lobby'))
 router.use('/', require('./menu'))
 

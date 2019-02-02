@@ -135,11 +135,7 @@ class QuadTree {
       this.southeast.insert(point) || this.southwest.insert(point));
   }
 
-  query(range, found) {
-    if (!found) {
-      found = [];
-    }
-
+  query(range, found = []) {
     if (!range.intersects(this.boundary)) {
       return found;
     }

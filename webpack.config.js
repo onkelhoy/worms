@@ -17,6 +17,11 @@ const config = {
       'webpack/hot/dev-server',
       'webpack-hot-middleware/client',
       './src/lobby.js'
+    ],
+    test: [
+      'webpack/hot/dev-server',
+      'webpack-hot-middleware/client',
+      './src/test.js'
     ]
   },
   output: {
