@@ -12,6 +12,13 @@ class Point {
   }
 }
 
+class Line {
+  constructor (x1, y1, x2, y2) {
+    this.a = {x: x1, y: y1}
+    this.b = {x: x2, y: y2}
+  }
+}
+
 class Rectangle {
   constructor(x, y, w, h) {
     this.x = x;
@@ -20,7 +27,10 @@ class Rectangle {
     this.h = h;
   }
 
-  contains(point) {
+  contains(line) {
+    return this.containsPoint(line.a) || this.containsPoint(line.b)
+  }
+  containsPoint (point) {
     return (point.x >= this.x - this.w &&
       point.x <= this.x + this.w &&
       point.y >= this.y - this.h &&
@@ -45,12 +55,13 @@ class Circle {
     this.rSquared = this.r * this.r;
   }
 
-  contains(point) {
+  contains(line) {
     // check if the point is in the circle by checking if the euclidean distance of
     // the point and the center of the circle if smaller or equal to the radius of
     // the circle
-    let d = Math.pow((point.x - this.x), 2) + Math.pow((point.y - this.y), 2);
-    return d <= this.rSquared;
+    let d1 = Math.pow((line.a.x - this.x), 2) + Math.pow((line.a.y - this.y), 2);
+    let d2 = Math.pow((line.b.x - this.x), 2) + Math.pow((line.b.y - this.y), 2);
+    return d1 <= this.rSquared || d2 <= this.rSquared;
   }
 
   intersects(range) {
@@ -158,5 +169,5 @@ class QuadTree {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { Point, Rectangle, QuadTree, Circle };
+  module.exports = { Point, Rectangle, QuadTree, Circle, Line };
 }

@@ -20,7 +20,32 @@ const Lerp = function (a, b, t) { // could also use the Map function M(t,0,1,a,b
   return a + (b - a) * t
 }
 
+/**
+ * 
+ * @param {DOMElement} canvas 
+ */
+const DownloadCanvas = function (canvas) {
+  let a = document.createElement('a')
+  a.setAttribute('download', 'MapGen.png') 
+  
+  a.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+  a.click()
+}
 
+/**
+ * 
+ * @param {Number} width 
+ * @param {Number} height 
+ */
+const GetCanvas = function (width, height) {
+
+  let canvas = document.createElement('canvas')
+  canvas.width = width
+  canvas.height = height
+  let ctx = canvas.getContext('2d')
+
+  return { canvas, ctx }
+}
 /**
  * Loads an image from url with promise
  * 
@@ -112,5 +137,5 @@ const Gravity = .4
 const Friction = .8
 export {
   Map, Lerp, Random, Gravity, Friction,
-  ObjectLeafs, LoadImage
+  ObjectLeafs, LoadImage, GetCanvas, DownloadCanvas
 }

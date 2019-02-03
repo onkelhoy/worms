@@ -1,5 +1,5 @@
 import { Map } from '../util/Helper'
-import { Line } from '../util/QuadTree'
+import { Line } from '../util/QuadTree'
 
 const NON_PIXEL = 0 
 
@@ -32,7 +32,6 @@ export default class Generator {
 
     this.checks = []
     this.paths = []
-    this.k = 0
   }
 
   FindPaths () {
@@ -65,10 +64,8 @@ export default class Generator {
     
     let before = null 
 
-    stack.push(next)
-    let calc = this.CALC(next)
-
-    path.push(new Line(calc.x, calc.y, -1, -1))
+    stack.push(new Line(next.x, next.y, -1, -1))
+    path.push(this.CALC(next))
 
     while((next = stack.pop())) {
       // mark it as check 
@@ -91,8 +88,8 @@ export default class Generator {
         angle = ANGLE(calc, prev.a)
 
         // no angle since quadtree will not work good then 
-        if (DISTANCE(calc, prev.a) > this.distance && Math.abs(angle - before.angle) > 0) {
-          prev.b.x = calc.x 
+        if (DISTANCE(calc, prev.a) > this.distance || Math.abs(angle - before.angle) > Math.PI/3) {
+          prev.b.x = calc.x
           prev.b.y = calc.y
           path.push(new Line(calc.x, calc.y, -1, -1))
         }
@@ -105,8 +102,10 @@ export default class Generator {
       for (let x=next.x-1; x<next.x+2; x++) {
         // check if reached end 
         if (path.length > 2 && x === start.x && y === start.y) {
-          path[path.length-1].b.x = path[0].a.x 
-          path[path.length-1].b.y = path[0].a.y
+          // connect the ending line to start
+          path[path.length-1].b.x = start.x 
+          path[path.length-1].b.y = start.y
+
           return path // path is completed
         }
           
@@ -122,6 +121,7 @@ export default class Generator {
       }}
     }
 
+    console.log('error')
     return [] // throw new Error(`Cant connect path [${path.length}]`) 
   }
 
