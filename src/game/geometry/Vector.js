@@ -117,6 +117,25 @@ const Vector = class {
 
     return vector
   }
+
+  /**
+   * Returns the distance between two point values 
+   * @param {Number} x1 
+   * @param {Number} y1 
+   * @param {Number} x2 
+   * @param {Number} y2 
+   */
+  static DistancePoints (x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2))
+  }
+  /**
+   * Returns the distance between two points 
+   * @param {Point} a 
+   * @param {Point} b 
+   */
+  static Distance (a, b) {
+    return Vector.DistancePoints(a.x, a.y, b.x, b.y)
+  }
   static scalerReflection (x, a, b, withPoint) {
     // line segment defined by points(a, b)
     let norm = b.subtract(a), point = x.subtract(a)

@@ -73,23 +73,15 @@ export default class TerrainRenderer {
     if (debug) timer.start('texturize')
     this.texturize()
     if (debug) timer.stop('texturize')
-
-    const canvas = document.createElement('canvas')
-    // Draw result to fgCanvas
-    const fgCtx = canvas.getContext('2d')
-    canvas.width = this.terr.width
-    canvas.height = this.terr.height
-    fgCtx.putImageData(this.terr, 0, 0)
-
     
 
-    // Draw characters
-    let playerPositions = this.drawCharacters(seed, randomGen, fgCtx)
+    // Get character positions
+    let playerPositions = this.drawCharacters(seed)
 
-    return { playerPositions, canvas }
+    return { playerPositions, terrain: this.terr }
   }
 
-  drawCharacters (seed, randomGen, canvasCtx) {
+  drawCharacters (seed) {
     // Here we expect charaImg to be a grid of characters that we choose from randomly
     const charaW = this.options.charaWidth
     const charaH = this.options.charaHeight

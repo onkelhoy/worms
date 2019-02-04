@@ -10,11 +10,11 @@ let main
 export default async function init () {
   map = new Map()
   await map.Generate(
-    2000, 1000, '/content/terrain/mask/MapBase_center_1.png', 
+    2000, 1000, '/content/terrain/mask/MapBase_two_2.png', 
     '/content/terrain/texture/ground.png')
 
   let background = GetCanvas(2000, 1000)
-  background.ctx.drawImage(map.terrain.terrain, 0, 0)
+  background.ctx.putImageData(map.terrain, 0, 0)
 
   console.log(map)
   for (let polygon of map.polygons) {
@@ -35,6 +35,10 @@ export default async function init () {
   main.canvas.onmousemove = e => {
     mouse.x = e.clientX 
     mouse.y = e.clientY
+  }
+  main.canvas.onmouseup = e => {
+    console.log('explode')
+    map.Explode(mouse, 40, background)
   }
 
   document.body.appendChild(background.canvas)

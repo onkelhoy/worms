@@ -91,7 +91,8 @@ export default class Generator {
         angle = ANGLE(calc, prev.a)
 
         // no angle since quadtree will not work good then 
-        if (DISTANCE(calc, prev.a) > this.distance && Math.abs(angle - before.angle) > 0) {
+        let dist = DISTANCE(calc, prev.a)       // dont want too long lines later for explotions 
+        if (dist > this.distance && (Math.abs(angle - before.angle) > 0 || dist > this.distance*2)) {
           prev.b.x = calc.x 
           prev.b.y = calc.y
           path.push(new Line(calc.x, calc.y, -1, -1))
