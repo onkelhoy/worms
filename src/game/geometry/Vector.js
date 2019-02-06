@@ -6,7 +6,11 @@ const Vector = class {
   }
 
   get mag () { // total, value, index
+    // console.log('im called')
     return Math.sqrt(this.reduce((t, v, i) => t + v*v))
+  }
+  get Mag () {
+    return this.mag
   }
 
   get size () {
@@ -239,7 +243,7 @@ const Vector2 = class extends Vector {
     console.log({x: Math.round(this.x * power) / power, y: Math.round(this.y * power) / power})
   }
 
-  render (ctx, radius = 1, color = 'cornflowerblue', mode = 'fill') {
+  Render (ctx, radius = 1, color = 'cornflowerblue', mode = 'fill') {
     if (mode !== 'fill' && mode !== 'stroke') throw new Error('wrong mode specified')
      ctx.beginPath()
       ctx.arc(this.x, this.y, radius, 0, Math.PI * 2)

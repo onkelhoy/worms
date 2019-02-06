@@ -11,7 +11,7 @@
   "scripts": {
     "start": "cross-env MODE=prod node server.js",
     "build": "cross-env MODE=prod webpack",
-    "server-dev": "cross-env MODE=dev nodemon server.js --watch",
+    "dev-server": "cross-env MODE=dev nodemon server.js --watch",
     "dev": "cross-env MODE=dev node server.js"
   },
   "repository": {

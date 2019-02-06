@@ -70,6 +70,26 @@ export default class Collision {
     return Collision.PointLineDistance(c, a, b) < c.r
   }
 
+  static CircleLine (c, l) {
+    // check with line segment : first as it gives best point
+    let d = Vector.scalerReflection(c, l.a, l.b)
+    if (Collision.CirclePoint(c, d.point) && Vector.inBetween(d.point, l.a, l.b)) 
+      return d
+
+    
+    // check with A
+    let distance = Collision.PointPointDistance(c, l.a)
+    if (distance < c.r)
+      return {point: l.a, distance}
+
+    // check with B
+    distance = Collision.PointPointDistance(c, l.b)
+    if (distance < c.r)
+      return {point: l.b, distance}
+
+    return false 
+  }
+
   /**
    * Returns point of intersection and distance from circle center to point 
    * @param {Circle} c 
