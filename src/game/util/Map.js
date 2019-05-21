@@ -120,7 +120,7 @@ export default class Map {
    */
   Explode (coordinate, force, background) {
     let radius = 0
-    force = 100
+    
     if (force instanceof Object)
       radius = Vector.Distance(coordinate, force) * 2 + force.default // a default force value {x,y,default}
     else radius = force * 2
@@ -130,7 +130,7 @@ export default class Map {
     let number = Math.floor(Math.PI*2*radius / 10)
     let stepAngle = (Math.PI*2)/number // save some calc energy!
     for (let i=0; i<number; i++) {
-      let line = 
+      
       circleLines.push({ a: {
         x: Math.floor(coordinate.x + Math.cos(i * stepAngle) * radius),
         y: Math.floor(coordinate.y + Math.sin(i * stepAngle) * radius)
@@ -261,18 +261,6 @@ export default class Map {
 
     background.ctx.strokeStyle = 'black'
     background.ctx.lineWidth = 1
-
-    if (circleLines.length > 0) {
-    background.ctx.beginPath()
-    background.ctx.moveTo(circleLines[0].a.x, circleLines[0].a.y)
-    for (let i=0; i<circleLines.length; i++) {
-      let line = circleLines[i]
-      background.ctx.lineTo(line.a.x, line.a.y)
-      background.ctx.lineTo(line.b.x, line.b.y)
-      background.ctx.arc(line.a.x, line.a.y, 1, 0, Math.PI*2)
-    }
-    background.ctx.stroke()
-  }
 
     this.GenerateQuadTree()
   }

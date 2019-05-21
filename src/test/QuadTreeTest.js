@@ -10,7 +10,7 @@ let main
 export default async function init () {
   map = new Map()
   await map.Generate(
-    2000, 1000, '/content/terrain/mask/MapBase_two_2.png', 
+    2000, 1000, '/content/terrain/mask/type-3.png', 
     '/content/terrain/texture/ground.png')
 
   let background = GetCanvas(2000, 1000)
