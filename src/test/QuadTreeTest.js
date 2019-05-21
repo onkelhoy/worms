@@ -1,4 +1,4 @@
-import { Rectangle, Circle, QuadTree } from '../game/util/QuadTree'
+import { Circle } from '../game/util/QuadTree'
 import Map from '../game/util/Map'
 import { GetCanvas } from '../game/util/Helper';
 

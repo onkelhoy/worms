@@ -5,6 +5,10 @@ export default class GameObject extends Vector2 {
     super(x, y)
   }
 
+  MoveTo (x, y) {
+    this.x = x 
+    this.y = y
+  } 
   get position () { return this }
 
   renderShape (ctx, color = 'black', mode = 'stroke', cb, lineWidth = 1) {

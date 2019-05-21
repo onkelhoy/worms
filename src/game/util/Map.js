@@ -1,7 +1,6 @@
-import World from './game'
 import TerrainGenerator from '../generator/TerrainGenerator'
 import TerrainRenderer from '../generator/TerrainRenderer'
-import { LoadImage, GetCanvas, DownloadCanvas } from './Helper'
+import Line from '../geometry/Line'
 import Generator from '../generator/PolygonGenerator';
 import { QuadTree, Rectangle, Circle } from './QuadTree'
 import { Vector, Vector2 } from '../geometry/Vector';
@@ -77,7 +76,7 @@ export default class Map {
     for (let p=0; p<this.polygons.length; p++) {
       for (let i=0; i<this.polygons[p].length; i++) { 
         let line = this.polygons[p][i]
-        this.quadtree.insert({a: line.a, b: line.b, p, i})
+        this.quadtree.insert({a: Vector2.toVector(line.a), b: Vector2.toVector(line.b), p, i})
       }
     }
   }
@@ -120,7 +119,10 @@ export default class Map {
    */
   Explode (coordinate, force, background) {
     let radius = 0
+<<<<<<< HEAD
     
+=======
+>>>>>>> 32eb3481bd9daa2e4c88332ada991eb65160669a
     if (force instanceof Object)
       radius = Vector.Distance(coordinate, force) * 2 + force.default // a default force value {x,y,default}
     else radius = force * 2
@@ -177,7 +179,7 @@ export default class Map {
     let _x = coordinate.x-radius-this.border.thickness,
         _y = coordinate.y-radius-this.border.thickness,
         r = radius*2+2*this.border.thickness
-    
+        
     let newImgData = background.ctx.getImageData(0, 0, background.canvas.width, background.canvas.height) // partion image data
     
     for (let y=0; y<r; y++) {
@@ -256,8 +258,6 @@ export default class Map {
 
     for (let line of circleLines) 
       this.polygons[this.polygons.length-1].push(line)
-
-
 
     background.ctx.strokeStyle = 'black'
     background.ctx.lineWidth = 1

@@ -5,6 +5,10 @@ const router = express.Router()
 // first security (check if client logged in)
 router.use('/', function (req, res, next) {
   // check credentials
+<<<<<<< HEAD
+=======
+  console.log(process.env.MODE)
+>>>>>>> 32eb3481bd9daa2e4c88332ada991eb65160669a
   if (process.env.MODE !== 'dev')
     return res.redirect('/')
 
