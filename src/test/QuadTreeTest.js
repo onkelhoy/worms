@@ -1,5 +1,5 @@
 import { Circle } from '../game/util/QuadTree'
-import Map from '../game/util/Map'
+import Map from '../game/World/Map'
 import { GetCanvas } from '../game/util/Helper';
 
 
@@ -10,8 +10,8 @@ let main
 export default async function init () {
   map = new Map()
   await map.Generate(
-    2000, 1000, '/content/terrain/mask/MapBase_two_2.png', 
-    '/content/terrain/texture/ground.png')
+    2000, 1000, '/content/mask/1.png', 
+    '/content/texture/ground (3).jpg')
 
   let background = GetCanvas(2000, 1000)
   background.ctx.putImageData(map.terrain, 0, 0)

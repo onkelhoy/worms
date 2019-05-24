@@ -5,7 +5,7 @@ import Globals from "../util/Globals";
 
 export default class RigidBody extends Circle {
   constructor (x, y, spritesheet) {
-    super(x, y, 40)
+    super(x, y, 30)
 
     this.vel = new Vector2(0, 0)
     this.previous_position = new Vector2(x, y)

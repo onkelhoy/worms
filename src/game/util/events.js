@@ -9,10 +9,10 @@ class Event {
    * @param {DOM} canvas 
    */
   static init (GAME) {
-    GAME.canvas.addEventListener('touchstart', handleStart, false)
-    GAME.canvas.addEventListener('touchend', handleEnd, false)
-    GAME.canvas.addEventListener('touchmove', handleMove, false)
-    GAME.canvas.addEventListener('touchcancel', handleEnd)
+    document.body.addEventListener('touchstart', handleStart, false)
+    document.body.addEventListener('touchend', handleEnd, false)
+    document.body.addEventListener('touchmove', handleMove, false)
+    document.body.addEventListener('touchcancel', handleEnd)
 
     Game = GAME
   }
@@ -116,7 +116,7 @@ class TouchController {
     
     let d = Vector.Delta(touches.zoom.list[1], touches.zoom.list[0])
     let v = touches.zoom.value * d.distance / touches.zoom.start
-    if (v < 1) v = 1
+    if (v < .6) v = .6
     if (v > 2.5) v = 2.5 
     return v
   }

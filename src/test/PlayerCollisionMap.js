@@ -1,5 +1,5 @@
 import { Circle } from '../game/util/QuadTree'
-import Map from '../game/util/Map';
+import Map from '../game/World/Map';
 import { GetCanvas } from '../game/util/Helper';
 import Player from '../game/player/Player';
 

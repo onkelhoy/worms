@@ -1,9 +1,9 @@
 import './style/game.scss'
 
 import { Event, TouchController as Controller } from './game/util/events'
-import World from './game/util/game'
+import World from './game/World/World'
 import { Vector2 } from './game/geometry/Vector'
-import Map from './game/util/Map'
+import Map from './game/World/Map'
 
 
 

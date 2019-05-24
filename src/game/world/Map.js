@@ -1,10 +1,12 @@
 import TerrainGenerator from '../generator/TerrainGenerator'
 import TerrainRenderer from '../generator/TerrainRenderer'
-import Line from '../geometry/Line'
 import Generator from '../generator/PolygonGenerator';
-import { QuadTree, Rectangle, Circle } from './QuadTree'
+import { QuadTree, Rectangle, Circle } from '../util/QuadTree'
 import { Vector, Vector2 } from '../geometry/Vector';
-import Collision from './Collision';
+import Collision from '../util/Collision';
+import { boundary, GetCanvas } from '../util/Helper'
+import Globals from '../util/Globals'
+import Background from '../util/Background';
 
 export default class Map {
   /**
@@ -15,15 +17,19 @@ export default class Map {
    * @param {Object} border 
    */
   constructor (terrain, playerPositions, polygons, border) {
+    if (!terrain)
+      return 
+
     this.terrain = terrain 
     this.playerPositions = playerPositions
     this.polygons = polygons
     this.border = border 
 
+    this.background = new Background('#map', this.terrain)
+    this.background.Z = 9 
 
     this.GenerateQuadTree()
   }
-
   /**
    * Generates terrain + polygon outline & quadtree
    * 
@@ -39,8 +45,8 @@ export default class Map {
    * @param {Number} distance 
    */
   async Generate (width, height, mask, texture, 
-    character_width = 50, character_height = 80, character_number = 8, 
-    border_color = '#555555', border_thickness = 10, distance = 10) {
+    border_color = '#555555', border_thickness = 10, character_number = 8, 
+    character_width = 50, character_height = 80, distance = 10) {
 
       this.border = {
         color: border_color,
@@ -54,24 +60,27 @@ export default class Map {
         },
         border: this.border
       }
+      
       let terrainInfo = await Map.GenerateTerrain(width, height, config)
+      
       this.shape = terrainInfo.shape 
       this.terrain = terrainInfo.terrain
+
       this.playerPositions = terrainInfo.playerPositions
 
       let gen = new Generator(this.shape, width, height, distance)
       gen.FindPaths()
       this.polygons = gen.paths
       
+      this.background = new Background('#map', this.terrain)
+      this.background.Z = 9
       this.GenerateQuadTree()
-
-      console.log('Map fully generated', this.terrain)
   }
 
   GenerateQuadTree (capacity = 7) {
     if (!this.terrain)
       return 
-    
+
     this.quadtree = new QuadTree(new Rectangle(0, 0, this.terrain.width, this.terrain.height), capacity)
     for (let p=0; p<this.polygons.length; p++) {
       for (let i=0; i<this.polygons[p].length; i++) { 
@@ -111,14 +120,17 @@ export default class Map {
     return { terrain, playerPositions, shape }
   }
 
+  getIndex (x, y) {
+    return (x + y * this.terrain.width) * 4
+  }
   /**
    * 
    * @param {Point} coordinate 
    * @param {Number|Point} force 
-   * @param {*} background 
    */
-  Explode (coordinate, force, background) {
+  Explode (coordinate, force) {
     let radius = 0
+
     if (force instanceof Object)
       radius = Vector.Distance(coordinate, force) * 2 + force.default // a default force value {x,y,default}
     else radius = force * 2
@@ -135,14 +147,14 @@ export default class Map {
       }, b: i > 0 ? {x: circleLines[i-1].a.x, y: circleLines[i-1].a.y} : null})
     }
 
-    // connnect last 
+    // connect last 
     circleLines[0].b = {x: circleLines[number-1].a.x, y: circleLines[number-1].a.y}
-
+    
     // filter out the outsides
     let circleLines_ends = []
     circleLines = circleLines.filter(line => {
-      let aIndex = (line.a.x + line.a.y * this.terrain.width) * 4
-      let bIndex = (line.b.x + line.b.y * this.terrain.width) * 4
+      let aIndex = this.getIndex(line.a.x, line.a.y) 
+      let bIndex = this.getIndex(line.b.x, line.b.y)
 
       let alphaA = this.terrain.data[aIndex+3] === 0 
       let alphaB = this.terrain.data[bIndex+3] === 0
@@ -160,28 +172,28 @@ export default class Map {
     let targetLines = this.quadtree.query(new Circle(coordinate.x, coordinate.y, radius+10))
 
     // placing the border
-    background.ctx.beginPath()
-      background.ctx.arc(coordinate.x, coordinate.y, radius+this.border.thickness, 0, Math.PI*2)
-      background.ctx.fillStyle = this.border.color
-      background.ctx.fill()
+    this.background.main.ctx.beginPath()
+      this.background.main.ctx.arc(coordinate.x, coordinate.y, radius+this.border.thickness, 0, Math.PI*2)
+      this.background.main.ctx.fillStyle = this.border.color
+      this.background.main.ctx.fill()
 
     // placing the markup for hole
-    background.ctx.beginPath()
-      background.ctx.arc(coordinate.x, coordinate.y, radius, 0, Math.PI*2)
-      background.ctx.fillStyle = 'rgba(240, 50, 230)'
-      background.ctx.fill()
+    this.background.main.ctx.beginPath()
+      this.background.main.ctx.arc(coordinate.x, coordinate.y, radius, 0, Math.PI*2)
+      this.background.main.ctx.fillStyle = 'rgba(240, 50, 230)'
+      this.background.main.ctx.fill()
 
     // removing the pixels based on orginal imageData : terrain
-    let _x = coordinate.x-radius-this.border.thickness,
-        _y = coordinate.y-radius-this.border.thickness,
-        r = radius*2+2*this.border.thickness
-        
-    let newImgData = background.ctx.getImageData(0, 0, background.canvas.width, background.canvas.height) // partion image data
+    let _x = coordinate.x-radius-this.border.thickness - 2,
+        _y = coordinate.y-radius-this.border.thickness - 2, // just some extra
+        r = radius*2 + 2*this.border.thickness + 4
+
+    let newImgData = this.background.main.ctx.getImageData(0, 0, this.background.main.canvas.width, this.background.main.canvas.height) // partion image data
     
     for (let y=0; y<r; y++) {
     for (let x=0; x<r; x++) {
-      // console.log(x+_x, y+_y)
-      let i = (x+_x + (_y+y)*newImgData.width)*4
+      // since coordinate is fuzzy
+      let i = this.getIndex(Math.floor(x+_x), Math.floor(y+_y))
       // dont go over the borders
       if (i < 0 || i > newImgData.data.length - 1) 
         continue
@@ -195,8 +207,8 @@ export default class Map {
         newImgData.data[i+3] = 0
       }
     }}
-
-    background.ctx.putImageData(newImgData, 0, 0)
+    
+    this.background.main.ctx.putImageData(newImgData, 0, 0)
     this.terrain = newImgData
 
     // terrain is now updated 
@@ -221,13 +233,12 @@ export default class Map {
     for (let line of filtered.selected) {
       
       let c = Collision.LineLineIntersection(cline, line)
+      let aIndex = this.getIndex(cline.a.x, cline.a.y)
+      let bIndex = this.getIndex(cline.b.x, cline.b.y)
+
+      let a2Index = this.getIndex(line.a.x, line.a.y)
+      let b2Index = this.getIndex(line.b.x, line.b.y)
       if (c) {
-        let aIndex = (cline.a.x + cline.a.y * this.terrain.width) * 4
-        let bIndex = (cline.b.x + cline.b.y * this.terrain.width) * 4
-
-        let a2Index = (line.a.x + line.a.y * this.terrain.width) * 4
-        let b2Index = (line.b.x + line.b.y * this.terrain.width) * 4
-
         // circle lines 
         if (this.terrain.data[aIndex+3] === 0) {
           cline.a.x = c.x 
@@ -250,6 +261,29 @@ export default class Map {
           line.b.y = c.y 
         }
       }
+      else { // connect the lines if they be outside 
+        // circle lines 
+        if (this.terrain.data[aIndex+3] === 0) {
+          cline.a.x = cline.b.x 
+          cline.a.y = cline.b.y 
+        }
+        
+        if (this.terrain.data[bIndex+3] === 0) {
+          cline.b.x = cline.a.x 
+          cline.b.y = cline.a.y 
+        }
+
+        // terrain lines 
+        if (this.terrain.data[a2Index+3] === 0) {
+          line.a.x = line.b.x 
+          line.a.y = line.b.y 
+        }
+        
+        if (this.terrain.data[b2Index+3] === 0) {
+          line.b.x = line.a.x 
+          line.b.y = line.a.y 
+        }
+      }
     }}
 
     for (let line of circleLines) 
@@ -258,14 +292,7 @@ export default class Map {
     this.GenerateQuadTree()
   }
 
-  draw (ctx) {
-    //  statics
-    // have background image
-    // have background water (?)
-    // have foreground (actual terrain)
-
-    //  dynamics
-    // have players (and all the movable stuff)
-    // have front water (?)
+  Draw (cam, scale) {
+    this.background.Draw(cam, scale)
   }
 }

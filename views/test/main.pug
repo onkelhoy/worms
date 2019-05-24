@@ -4,13 +4,12 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title=title
-
-    style(type='text/css').
-      canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
   body
+    div.wrapper 
+          div#background
+          canvas#waterback
+          canvas#map
+          canvas#main
+          canvas#waterfront
 
     script(src="/js/test.bundle.js")

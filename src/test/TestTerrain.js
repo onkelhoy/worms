@@ -1,4 +1,4 @@
-import Map from '../game/util/Map'
+import Map from '../game/World/Map'
 import { LoadImage, GetCanvas, DownloadCanvas } from '../game/util/Helper'
 import Generator from '../game/generator/PolygonGenerator'
 import Tester from './Tester'

@@ -21,32 +21,6 @@ const Lerp = function (a, b, t) { // could also use the Map function M(t,0,1,a,b
 }
 
 /**
- * 
- * @param {DOMElement} canvas 
- */
-const DownloadCanvas = function (canvas) {
-  let a = document.createElement('a')
-  a.setAttribute('download', 'MapGen.png') 
-  
-  a.href = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
-  a.click()
-}
-
-/**
- * 
- * @param {Number} width 
- * @param {Number} height 
- */
-const GetCanvas = function (width, height) {
-
-  let canvas = document.createElement('canvas')
-  canvas.width = width
-  canvas.height = height
-  let ctx = canvas.getContext('2d')
-
-  return { canvas, ctx }
-}
-/**
  * Loads an image from url with promise
  * 
  * @param {String} url
@@ -84,6 +58,40 @@ function ItrO (o, p, cb) {
     else 
       cb(key.substr(0, key.length-1), o[key], p)
   }
+}
+
+/**
+ * Simple function that returns the requested DOM node|element
+ * (uses querySelector) but its shorter to use :)
+ * 
+ * @param {string} query
+ * @returns {DOM}
+ */
+const GetDOM = function (query) {
+  return document.querySelector(query)
+}
+/**
+ * Returns the canvas & context based on the query and optinal width & height 
+ * 
+ * @param {string} query 
+ * @param {number} width 
+ * @param {number} height 
+ */
+const GetCanvas = function (query, width = window.innerWidth, height = window.innerHeight) {
+  let canvas = null 
+  if (typeof query === "string")
+    canvas = GetDOM(query)
+  else {
+    canvas = document.createElement('canvas')
+    height = width 
+    width = query 
+  }
+  
+  let ctx = canvas.getContext('2d')
+  canvas.width = width 
+  canvas.height = height
+
+  return { canvas, ctx } 
 }
 
 class Random {
@@ -135,7 +143,8 @@ class Random {
 }
 const Gravity = .4
 const Friction = .8
+const boundary = {x:0,y:0,w:2048,h:1200}
 export {
   Map, Lerp, Random, Gravity, Friction,
-  ObjectLeafs, LoadImage, GetCanvas, DownloadCanvas
+  ObjectLeafs, LoadImage, GetDOM, boundary, GetCanvas
 }

@@ -1,5 +1,6 @@
 import { Map } from '../util/Helper'
 import { Line } from '../util/QuadTree'
+import Globbals from '../util/Globals'
 
 const NON_PIXEL = 0 
 
@@ -127,9 +128,10 @@ export default class Generator {
   }
 
   CALC (o) {
+    let map = Globbals.MAPOFFSET
     return { 
-      x: Map(o.x, 0, this.shape.width, 0, this.width), 
-      y: Map(o.y, 0, this.shape.height, 0, this.height ) 
+      x: Map(o.x, 0, this.shape.width, 0, this.width) + map.x, 
+      y: Map(o.y, 0, this.shape.height, 0, this.height) + map.y
     }
   }
   CheckEdge (_x, _y) {
