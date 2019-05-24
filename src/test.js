@@ -5,10 +5,10 @@ import './style/game.scss'
 
 async function InitTest () {
   // TerrainTest()
-  // WorldCameraTest() // interactive with user 
+  WorldCameraTest() // interactive with user 
   // QuadTreeTest()
 
-  SpriteSheetTest()
+  // SpriteSheetTest()
 }
 
 InitTest()

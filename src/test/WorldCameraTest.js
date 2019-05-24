@@ -28,8 +28,8 @@ window.print = false
 
 export default async function () {
   map = new Map()
-  await map.Generate(boundary.w, boundary.h, '/content/mask/1.png', 
-    '/content/texture/ground (9).jpg', '#333333')
+  await map.Generate(boundary.w, boundary.h, '/content/mask/8.png', 
+    '/content/texture/ground (8).jpg', '#fdd8b5')
 
   player = new Player(boundary.w/2, 0)
 
@@ -84,6 +84,10 @@ function keypress (e) {
 
     case 'KeyA':
       key.a = !key.a
+      break;
+
+    case 'KeyE':
+      key.e = !key.e 
       break;
 
     case 'ArrowUp':
@@ -174,13 +178,13 @@ function preRender (ctx) {
 
   map.Draw(World.Camera, window.zoom)
   
-  if (Controller.press && explode) {
+  if (key.e && explode) {
     map.Explode({x: player.x, y: player.y}, player.Radius)
     World.Camera.Shake(200, 10)
     explode = false 
   }
 
-  if (!Controller.press)
+  if (!key.e)
     explode = true  
 }
 

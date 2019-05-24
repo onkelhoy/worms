@@ -25,13 +25,14 @@ export default class Background {
   Draw (cam, scale) {
     let sf = scale - 1
 
-    let x = -cam.x+cam.shake.x - (cam.offset2.x + cam.drag.x) //+ boundary.w*sf/(scale)
-    let y = -cam.y+cam.shake.y - (cam.offset2.y + cam.drag.y) //+ boundary.h*sf/(scale)
+    let x = -cam.x + cam.shake.x - (cam.offset2.x + cam.drag.x) - boundary.w*sf/(scale)//+cam.shake.x - (cam.offset2.x + cam.drag.x) //+ boundary.w*sf/(scale)
+    let y = -cam.y//+cam.shake.y - (cam.offset2.y + cam.drag.y) //+ boundary.h*sf/(scale)
 
     //TODO Must fix scaling !
 
+    this.main.canvas.style.transformOrigin = 'left top'
     this.main.canvas.style.transform = `
-      scale(${scale})
+      scale(${scale}, ${scale})
       translate(
         ${x}px, 
         ${y}px
