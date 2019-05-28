@@ -9,10 +9,10 @@ class Event {
    * @param {DOM} canvas 
    */
   static init (GAME) {
-    GAME.canvas.addEventListener('touchstart', handleStart, false)
-    GAME.canvas.addEventListener('touchend', handleEnd, false)
-    GAME.canvas.addEventListener('touchmove', handleMove, false)
-    GAME.canvas.addEventListener('touchcancel', handleEnd)
+    GAME.Wrapper.addEventListener('touchstart', handleStart, false)
+    GAME.Wrapper.addEventListener('touchend', handleEnd, false)
+    GAME.Wrapper.addEventListener('touchmove', handleMove, false)
+    GAME.Wrapper.addEventListener('touchcancel', handleEnd)
 
     Game = GAME
   }

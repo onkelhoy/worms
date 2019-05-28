@@ -2,10 +2,84 @@ extends ./main.pug
 
 block content 
   h1 Welcome to lobby
+  div.controlls 
+    div.select.textures
+      div.preview
+      div.body
+        div.header
+          h3 selected texture
+          img(src='/content/texture/'+textures[0] alt='selected texture' class='view') 
+        div.list 
+          each tex,index in textures 
+            img(src="/content/texture/"+tex, alt="texture"+index)
+    div.select.colors
+      div.preview 
+      div.body
+        div.header 
+          h3 selected color
+          span.view
+        div.list   
+          span.selected
+          span
+          span
+          span
+          span
+          span
+    div.select.background 
+      div.preview
+      div.body 
+        .header
+          h3 Background 
+    div.select.noise 
+      div.preview
+      div.body 
+        .header
+          h3 Noise
+        .main 
+          .slider 
+            label(for="noise") Map Noise
+            input(type="range" value=35 min=15 max=45 step=1 id='noise')
+            span
+          .slider 
+            label(for="bnoise") Background Noise
+            input(type="range" value=18 min=10 max=30 step=1 id='bnoise')
+            span
+          .slider
+            label(for="threshold") Threshold
+            input(type="range" value=20 min=10 max=30 step=1 id='threshold')
+            span
+    div.select.mask 
+      div.preview
+      div.body 
+        div.header
+          h3 Map Mask
+          img(src='/content/mask/1.png' alt='selected mask' class='view') 
+        div.list 
+          img(src="/content/mask/1.png", alt="mask1" class='selected')
+          img(src="/content/mask/2.png", alt="mask2")
+          img(src="/content/mask/3.png", alt="mask3")
+          img(src="/content/mask/4.png", alt="mask4")
+    //- div.select.chat 
+    //-   div.preview
+    //-   div.body 
+    //-     .header
+    //-       h3 Chat
+  div.wrapper 
+    div#background
+    canvas#waterback
+    canvas#main
+    canvas#waterfront
+  div.startbtn.button-class
+    a Start Game
+  div.spinner
+    div.double-bounce1
+    div.double-bounce2
 
-  div.chat
-    div.messages
-    textarea(cols="30", rows="5" placeholder='say something')
+  div.chatwrapper
+    div.button
+    div.chat
+      div.messages
+      textarea(cols="30", rows="5" placeholder='say something')
   div.popup.hide
     h3
     p

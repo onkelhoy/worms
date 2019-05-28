@@ -1,14 +1,15 @@
 import GameObject from './GameObject'
 import { Vector2 } from '../geometry/Vector'
-import { Random, Map } from '../util/Helper'
+import { Random, Map, boundary } from '../util/Helper'
 
+window.xpos = null
 export default class Camera extends GameObject {
   /**
    * smoothness is in range of [0, 1]
-   * 
-   * @param {Number} x 
-   * @param {Number} y 
-   * @param {Object} settings 
+   *
+   * @param {Number} x
+   * @param {Number} y
+   * @param {Object} settings
    */
   constructor (x, y, {
     width = window.innerWidth, height = window.innerHeight
@@ -44,9 +45,9 @@ export default class Camera extends GameObject {
   /**
    * screenOffset is often offset from corner to center
    * boundaryOffset is player offset to it's own center
-   * 
-   * @param {Coordinate2D} position 
-   * @param {Object} settings 
+   *
+   * @param {Coordinate2D} position
+   * @param {Object} settings
    */
   Follow (position, {
       screenOffset = {x: this.w/2, y: this.h/2},
@@ -60,7 +61,7 @@ export default class Camera extends GameObject {
   Drag (drag) {
     if (drag === null) {
       this.offset2.x += this.drag.x
-      this.offset2.y += this.drag.y 
+      this.offset2.y += this.drag.y
 
       this.drag = {x:0,y:0}
       return
@@ -72,11 +73,11 @@ export default class Camera extends GameObject {
    * Resets the offset to its original position
    */
   Reset () {
-    this.reset = true 
+    this.reset = true
   }
 
   Shake (duration = 10, magnitude = 4) {
-    this.shake.shaking = true 
+    this.shake.shaking = true
     this.shake.start = new Date().getTime()
     this.shake.duration = duration
     this.shake.magnitude = magnitude
@@ -84,22 +85,21 @@ export default class Camera extends GameObject {
 
   render (ctx, scale = 1) {
     // we want to update the follow object first then camera!, so we put this here
-    if (this.desired) 
+    if (this.desired)
       this.Transform = Vector2.Lerp(this, this.desired.subtract(this.offset), this.smoothSpeed)
-    
+
     if (this.shake.shaking) {
       this.shake.x = Random.range(-1, 1) * this.shake.magnitude
       this.shake.y = Random.range(-1, 1) * this.shake.magnitude
 
-      let difference = new Date().getTime() - this.shake.start 
+      let difference = new Date().getTime() - this.shake.start
       if (difference >= this.shake.duration) {
-        this.shake.shaking = false 
+        this.shake.shaking = false
         this.shake.x = 0
-        this.shake.y = 0 
+        this.shake.y = 0
       } // else { console.log(difference, this.shake.duration);}
     }
 
-    let sf = scale - 1 // scale -> [1, 2.5]
 
     if (this.reset) {
       this.offset2.x *= .8
@@ -111,14 +111,53 @@ export default class Camera extends GameObject {
       if (this.offset2.x === 0 && this.offset2.y === 0)
         this.reset = false
     }
-    
-    ctx.beginPath()
+
+
+
+    // need to fix when drag & zoom when we're at borders !!
+    let sf = scale - 1 // scale -> [1, 2.5]
+    let scalex = this.w*sf/(2*scale)
+    let scaley = this.h*sf/(2*scale)
+    let diffx = (this.offset2.x + this.drag.x) + scalex
+    let diffy = (this.offset2.y + this.drag.y) + scaley
+    // x boundary
+    if (this.x < boundary.x - scalex)
+      this.x = boundary.x - scalex
+    if (this.x + diffx < boundary.x) {
+      this.drag.x = 0
+      this.offset2.x = -(this.x+scalex)
+    }
+    if (this.x + this.w > boundary.w + scalex)
+      this.x = boundary.w - this.w + scalex
+    if (this.x + diffx + this.w - scalex*2 > boundary.w) {
+      this.offset2.x = boundary.w - this.x - this.w + scalex
+      this.drag.x = 0
+    }
+    // y boundary
+    if (this.y < boundary.y - scaley)
+      this.y = boundary.y - scaley
+    if (this.y + diffy < boundary.y) {
+      this.drag.y = 0
+      this.offset2.y = -(this.y+scaley)
+    }
+    if (this.y + this.h > boundary.h + scaley)
+      this.y = boundary.h - this.h + scaley
+    if (this.y + diffy + this.h - scaley*2 > boundary.h) {
+      this.offset2.y = boundary.h - this.y - this.h + scaley
+      this.drag.y = 0
+    }
+    this.coreRender(ctx, scale)
+  }
+
+  coreRender (ctx, scale) {
+    let sf = scale - 1 // scale -> [1, 2.5]
+    // ctx.beginPath()
     ctx.save()
     // ctx.translate(this.x - this.shake.x, this.y - this.shake.y)
     // ctx.translate(this.w*sf*10, 0)
     ctx.scale(scale, scale)
     ctx.translate(
-      -this.x + this.shake.x - (this.offset2.x + this.drag.x) - this.w*sf/(2*scale), 
+      -this.x + this.shake.x - (this.offset2.x + this.drag.x) - this.w*sf/(2*scale),
       -this.y + this.shake.y - (this.offset2.y + this.drag.y) - this.h*sf/(2*scale)
     )
 
@@ -128,3 +167,5 @@ export default class Camera extends GameObject {
     ctx.restore()
   }
 }
+
+let k = 0

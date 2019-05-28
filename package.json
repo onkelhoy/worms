@@ -55,6 +55,7 @@
     "http": "0.0.0",
     "image-outline": "^0.1.0",
     "p5": "^0.6.1",
+    "simple-peer": "^9.1.2",
     "simplex-noise": "^2.4.0",
     "socket.io": "^2.1.1"
   }

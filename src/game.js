@@ -1,9 +1,10 @@
 import './style/game.scss'
 
 import { Event, TouchController as Controller } from './game/util/events'
-import World from './game/util/game'
+import World from './game/World/World'
 import { Vector2 } from './game/geometry/Vector'
-import Map from './game/util/Map'
+import Map from './game/World/Map'
+import { LoadImage } from './game/util/Helper'
 
 
 
@@ -16,49 +17,47 @@ let pos2 = new Vector2(20, -300)
 
 
 let c = false, img
-window.change = function () {
-  c = !c
-}
 
-function intialize () {
-  World.init(update, render)
+window.gen = Map.Generate
+
+async function intialize (terrainData) {
+  World.init(terrainData, update, render)
   Event.init(World)
-  World.background = 81
+  World.background = '/content/backgrounds/forest.svg'
+  window.shake = (dur, mag) => {
+    World.Camera.Shake(dur, mag)
+  }
 
-  
-  load(['/content/MapBase_center_1.png'])
+  load(['/content/mask/1.png'])
 }
 async function load (images) {
   //return await World.LoadImage(path)
 
-  images = images.map(v => World.LoadImage(v))
+  console.log('helo')
+  images = images.map(v => LoadImage(v))
   images = await Promise.all(images)
+  console.log(LoadImage)
+
 
   img = images[0]
   World.loop()
 }
 
-window.gen = Map.Generate /*function (options) {
-  // options.mask = img
-  Map.Generate(options)
-}*/
-
-
 
 
 function update () {
   let joystick = Controller.joystick
-  pos.x += joystick.x * 5 
+  pos.x += joystick.x * 5
   pos.y += joystick.y * 5
 
-  if (c) 
+  if (c)
     World.Camera.Follow(pos2)
   else
     World.Camera.Follow(pos)
-  
+
   if (oldpos.x !== pos.x || oldpos.y !== pos.y) {
     oldpos.x = pos.x
-    oldpos.y = pos.y 
+    oldpos.y = pos.y
 
     World.Camera.Reset()
   }

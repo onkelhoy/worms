@@ -61,6 +61,32 @@ function ItrO (o, p, cb) {
   }
 }
 
+/**
+ * Simple function that returns the requested DOM node|element
+ * (uses querySelector) but its shorter to use :)
+ * 
+ * @param {string} query
+ * @returns {DOM}
+ */
+const GetDOM = function (query) {
+  return document.querySelector(query)
+}
+/**
+ * Returns the canvas & context based on the query and optinal width & height 
+ * 
+ * @param {string} query 
+ * @param {number} width 
+ * @param {number} height 
+ */
+const GetCanvas = function (query, width = window.innerWidth, height = window.innerHeight) {
+  let canvas = GetDOM(query)
+  let ctx = canvas.getContext('2d')
+  canvas.width = width 
+  canvas.height = height
+
+  return { canvas, ctx } 
+}
+
 class Random {
   /**
    * random value between [0, a]
@@ -110,7 +136,8 @@ class Random {
 }
 const Gravity = .4
 const Friction = .8
+const boundary = {x:0,y:0,w:2048,h:1200}
 export {
   Map, Lerp, Random, Gravity, Friction,
-  ObjectLeafs, LoadImage
+  ObjectLeafs, LoadImage, GetDOM, boundary, GetCanvas
 }

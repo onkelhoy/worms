@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="504px"
+	 height="504px" viewBox="0 0 504 504" enable-background="new 0 0 504 504" xml:space="preserve">
+<g id="Buttons">
+	<g id="button_up" display="none">
+		<circle display="inline" fill="#A67C52" cx="36" cy="42" r="27"/>
+		<circle display="inline" fill="#C69C6D" cx="36" cy="37" r="24.5"/>
+	</g>
+	<g id="button_down" display="none">
+		<ellipse display="inline" fill="#A67C52" cx="108" cy="42.688" rx="26.75" ry="26.313"/>
+		<circle display="inline" fill="#C69C6D" cx="108" cy="40.269" r="24.645"/>
+	</g>
+	<g id="cog" display="none">
+		<circle display="inline" cx="80.177" cy="135.679" r="26.833"/>
+		<polygon display="inline" points="112,139 97.9,139 108.86,143.41 106.43,149.44 94.65,144.7 105.25,155.3 100.3,160.25 
+			90.33,150.28 94.96,161.15 88.98,163.7 84,152.02 84,167 77,167 77,152.9 72.59,163.86 66.56,161.43 71.3,149.65 60.7,160.25 
+			55.75,155.3 65.72,145.33 54.85,149.96 52.3,143.98 63.98,139 49,139 49,132 63.1,132 52.14,127.59 54.57,121.56 66.35,126.3 
+			55.75,115.7 60.7,110.75 70.67,120.72 66.04,109.85 72.02,107.3 77,118.98 77,104 84,104 84,118.1 88.41,107.14 94.44,109.57 
+			89.7,121.35 100.3,110.75 105.25,115.7 95.28,125.67 106.15,121.04 108.7,127.02 97.02,132 112,132 		"/>
+	</g>
+	<g id="texture">
+		<g id="button_up_1_">
+			<circle fill="#A67C52" cx="36.125" cy="42" r="27"/>
+			<circle fill="#C69C6D" cx="36.125" cy="37" r="24.5"/>
+		</g>
+		<g id="button_down_1_">
+			<ellipse fill="#A67C52" cx="108.125" cy="42.688" rx="26.75" ry="26.313"/>
+			<circle fill="#C69C6D" cx="108.125" cy="40.269" r="24.645"/>
+		</g>
+		<g id="texture_icon" opacity="0.3">
+			<rect x="34" y="24" width="5" height="5"/>
+			<rect x="44" y="24" width="5" height="5"/>
+			<rect x="24" y="24" width="5" height="5"/>
+			<rect x="29" y="29" width="5" height="5"/>
+			<rect x="39" y="29" width="5" height="5"/>
+			<rect x="34" y="34" width="5" height="5"/>
+			<rect x="44" y="34" width="5" height="5"/>
+			<rect x="24" y="34" width="5" height="5"/>
+			<rect x="29" y="39" width="5" height="5"/>
+			<rect x="39" y="39" width="5" height="5"/>
+			<rect x="34" y="44" width="5" height="5"/>
+			<rect x="44" y="44" width="5" height="5"/>
+			<rect x="24" y="44" width="5" height="5"/>
+		</g>
+		<g id="texture_icon_1_" opacity="0.3">
+			<rect x="106" y="29" width="5" height="5"/>
+			<rect x="116" y="29" width="5" height="5"/>
+			<rect x="96" y="29" width="5" height="5"/>
+			<rect x="101" y="34" width="5" height="5"/>
+			<rect x="111" y="34" width="5" height="5"/>
+			<rect x="106" y="39" width="5" height="5"/>
+			<rect x="116" y="39" width="5" height="5"/>
+			<rect x="96" y="39" width="5" height="5"/>
+			<rect x="101" y="44" width="5" height="5"/>
+			<rect x="111" y="44" width="5" height="5"/>
+			<rect x="106" y="49" width="5" height="5"/>
+			<rect x="116" y="49" width="5" height="5"/>
+			<rect x="96" y="49" width="5" height="5"/>
+		</g>
+	</g>
+	<g id="color">
+		<g id="button_up_2_">
+			<circle fill="#A67C52" cx="36.125" cy="113" r="27"/>
+			<circle fill="#C69C6D" cx="36.125" cy="108" r="24.5"/>
+		</g>
+		<g id="button_down_2_">
+			<ellipse fill="#A67C52" cx="108.125" cy="113.688" rx="26.75" ry="26.313"/>
+			<circle fill="#C69C6D" cx="108.125" cy="111.269" r="24.645"/>
+		</g>
+		<circle id="up" fill="#FFF100" cx="36.125" cy="108" r="12.875"/>
+		<circle id="down" fill="#FFF100" cx="108.125" cy="111" r="12.875"/>
+	</g>
+	<g id="noise">
+		<g id="button_up_3_">
+			<circle fill="#A67C52" cx="36.125" cy="185" r="27"/>
+			<circle fill="#C69C6D" cx="36.125" cy="180" r="24.5"/>
+		</g>
+		<g id="button_down_3_">
+			<ellipse fill="#A67C52" cx="108.125" cy="185.688" rx="26.75" ry="26.313"/>
+			<circle fill="#C69C6D" cx="108.125" cy="183.269" r="24.645"/>
+		</g>
+		<g opacity="0.3">
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="24" y1="187" x2="24" y2="181"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="28" y1="187" x2="28" y2="177"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="32" y1="187" x2="32" y2="175"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="36" y1="187" x2="36" y2="174"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="40" y1="187" x2="40" y2="175"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="44" y1="187" x2="44" y2="178"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="48" y1="187" x2="48" y2="182"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="96" y1="190" x2="96" y2="184"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="100" y1="190" x2="100" y2="180"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="104" y1="190" x2="104" y2="178"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="108" y1="190" x2="108" y2="177"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="112" y1="190" x2="112" y2="178"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="116" y1="190" x2="116" y2="181"/>
+			<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="120" y1="190" x2="120" y2="185"/>
+		</g>
+	</g>
+	<g id="chat">
+		<g id="button_up_4_">
+			<circle fill="#A67C52" cx="36.125" cy="257" r="27"/>
+			<circle fill="#C69C6D" cx="36.125" cy="252" r="24.5"/>
+		</g>
+		<g id="button_down_4_">
+			<ellipse fill="#A67C52" cx="108.125" cy="257.688" rx="26.75" ry="26.313"/>
+			<circle fill="#C69C6D" cx="108.125" cy="255.269" r="24.645"/>
+		</g>
+		<g id="chat_icon">
+			<path fill="none" stroke="#754C24" stroke-miterlimit="10" d="M46.5,250.111v0.42c0,5.213-3.118,8.969-7.552,8.969
+				c0,0-19.322,0-19.813,0c-0.49,0-0.694-0.373-0.235-0.912c0.491-0.65,2.617-3.643,2.617-3.643
+				c-0.628-1.344-1.017-2.77-1.017-4.414v-0.42c0-5.214,3.662-9.611,8.096-9.611h10.353C43.382,240.5,46.5,244.897,46.5,250.111z"/>
+			<path fill="none" stroke="#754C24" stroke-miterlimit="10" d="M31.5,255.394v0.339c0,4.195,2.5,7.768,5.862,7.768
+				c0,0,14.647,0,15.019,0c0.372,0,0.527-0.574,0.179-1.008c-0.372-0.523-1.907-3.07-1.907-3.07c0.476-1.08,0.848-2.366,0.848-3.689
+				v-0.339c0-4.196-2.929-6.894-6.291-6.894h-7.848C34,248.5,31.5,251.197,31.5,255.394z"/>
+			
+				<ellipse fill="none" stroke="#754C24" stroke-width="0.75" stroke-miterlimit="10" cx="35.651" cy="253.399" rx="1.474" ry="1.539"/>
+		</g>
+		<g id="chat_icon_2_">
+			<path fill="none" stroke="#754C24" stroke-miterlimit="10" d="M118.5,253.111v0.42c0,5.213-3.118,8.969-7.552,8.969
+				c0,0-19.322,0-19.813,0c-0.49,0-0.694-0.373-0.235-0.912c0.491-0.65,2.617-3.643,2.617-3.643
+				c-0.628-1.344-1.017-2.77-1.017-4.414v-0.42c0-5.214,3.662-9.611,8.096-9.611h10.353C115.382,243.5,118.5,247.897,118.5,253.111z
+				"/>
+			<path fill="none" stroke="#754C24" stroke-miterlimit="10" d="M103.5,258.394v0.339c0,4.195,2.5,7.768,5.862,7.768
+				c0,0,14.647,0,15.019,0c0.372,0,0.527-0.574,0.179-1.008c-0.372-0.523-1.907-3.07-1.907-3.07c0.476-1.08,0.848-2.366,0.848-3.689
+				v-0.339c0-4.196-2.929-6.894-6.291-6.894h-7.848C106,251.5,103.5,254.197,103.5,258.394z"/>
+			
+				<ellipse fill="none" stroke="#754C24" stroke-width="0.75" stroke-miterlimit="10" cx="107.651" cy="256.399" rx="1.474" ry="1.539"/>
+		</g>
+	</g>
+	<g id="background">
+		<g id="button_up_5_">
+			<circle fill="#A67C52" cx="36.125" cy="328" r="27"/>
+			<circle fill="#C69C6D" cx="36.125" cy="323" r="24.5"/>
+		</g>
+		<g id="button_down_5_">
+			<ellipse fill="#A67C52" cx="108.125" cy="328.688" rx="26.75" ry="26.313"/>
+			<circle fill="#C69C6D" cx="108.125" cy="326.269" r="24.645"/>
+		</g>
+		<g>
+			<polygon fill="none" stroke="#754C24" stroke-miterlimit="10" points="50.5,326.994 50.5,334.5 21.5,334.5 21.5,326.994 
+				29.114,319.877 35.595,326.359 39.557,322.5 			"/>
+			<polygon fill="none" stroke="#754C24" stroke-miterlimit="10" points="50.5,313.992 50.5,326.994 39.518,322.5 35.44,326.359 
+				29.075,319.877 21.5,326.994 21.5,314.159 25.167,310.5 46.667,310.5 			"/>
+		</g>
+		<g>
+			<polygon fill="none" stroke="#754C24" stroke-miterlimit="10" points="123.5,330.994 123.5,338.5 94.5,338.5 94.5,330.994 
+				102.114,323.877 108.595,330.359 112.557,326.5 			"/>
+			<polygon fill="none" stroke="#754C24" stroke-miterlimit="10" points="123.5,317.992 123.5,330.994 112.518,326.5 
+				108.44,330.359 102.075,323.877 94.5,330.994 94.5,318.159 98.167,314.5 119.667,314.5 			"/>
+		</g>
+	</g>
+	<g id="color_icon">
+	</g>
+	<g id="mask">
+		<g id="button_up_6_">
+			<circle fill="#A67C52" cx="36.125" cy="401" r="27"/>
+			<circle fill="#C69C6D" cx="36.125" cy="396" r="24.5"/>
+		</g>
+		<g id="button_down_6_">
+			<ellipse fill="#A67C52" cx="108.125" cy="401.688" rx="26.75" ry="26.313"/>
+			<circle fill="#C69C6D" cx="108.125" cy="399.269" r="24.645"/>
+		</g>
+		<g>
+			<rect x="103" y="391" fill="#0071BC" width="20" height="16"/>
+			<rect x="93" y="399" fill="#29ABE2" width="16" height="6"/>
+		</g>
+		<g>
+			<rect x="31" y="388" fill="#0071BC" width="20" height="16"/>
+			<rect x="21" y="396" fill="#29ABE2" width="16" height="6"/>
+		</g>
+	</g>
+</g>
+<g id="slider">
+	<g display="none">
+		<line display="inline" fill="none" stroke="#0000FF" stroke-miterlimit="10" x1="179.5" y1="0" x2="179.5" y2="72"/>
+		<line display="inline" fill="none" stroke="#0000FF" stroke-miterlimit="10" x1="144" y1="36.5" x2="216" y2="36.5"/>
+	</g>
+	<g id="main">
+		<rect x="144" y="9" fill="#603813" width="36" height="18"/>
+		<rect x="144" y="9" fill="#42210B" width="36" height="3"/>
+		<rect x="144" y="24" fill="#754C24" width="36" height="3"/>
+	</g>
+	<g id="main_1_">
+		<path fill="#603813" d="M216,18c0,2.3-0.87,4.41-2.3,6c-1.64,1.84-4.04,3-6.7,3h-27V9h27c2.66,0,5.06,1.16,6.7,3
+			C215.13,13.59,216,15.7,216,18z"/>
+		<path fill="#42210B" d="M213.7,12H180V9h27C209.66,9,212.06,10.16,213.7,12z"/>
+		<path fill="#754C24" d="M213.7,24c-1.64,1.84-4.04,3-6.7,3h-27v-3H213.7z"/>
+	</g>
+	<g id="main_2_">
+		<path fill="#603813" d="M144,54.167c0,2.3,0.854,4.327,2.258,5.917c1.61,1.84,3.966,2.917,6.576,2.917H180V45h-27.166
+			c-2.61,0-4.966,1.243-6.576,3.083C144.854,49.673,144,51.867,144,54.167z"/>
+		<path fill="#42210B" d="M146.258,48H180v-3h-27.166C150.224,45,147.868,46,146.258,48z"/>
+		<path fill="#754C24" d="M146.258,60c1.61,2,3.966,3,6.576,3H180v-3H146.258z"/>
+	</g>
+	<radialGradient id="SVGID_1_" cx="198" cy="54" r="17.6665" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.6528" style="stop-color:#552D00"/>
+		<stop  offset="0.6844" style="stop-color:#764A00"/>
+		<stop  offset="0.7303" style="stop-color:#A06E00"/>
+		<stop  offset="0.7772" style="stop-color:#C28B00"/>
+		<stop  offset="0.8248" style="stop-color:#DDA300"/>
+		<stop  offset="0.873" style="stop-color:#F0B300"/>
+		<stop  offset="0.9226" style="stop-color:#FBBD00"/>
+		<stop  offset="0.9754" style="stop-color:#FFC000"/>
+	</radialGradient>
+	<circle fill="url(#SVGID_1_)" cx="198" cy="54" r="17.667"/>
+	<circle fill="#8C6239" cx="198" cy="54" r="12.027"/>
+</g>
+</svg>
