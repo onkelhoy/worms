@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import './init.scss';
 
 body {
@@ -7,4 +8,15 @@ body {
     top: 0;
     left: 0;
   }
+=======
+@import './init.scss';
+
+body {
+  overflow: hidden;
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8
 }

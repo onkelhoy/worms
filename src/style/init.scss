@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face { 
   font-family: 'driftwood';
   src: url('/content/fonts/driftwood.ttf') format('ttf');
@@ -29,4 +30,37 @@ body {
   &.small {
     padding: 3px 8px;
   }
+=======
+@font-face { 
+  font-family: 'driftwood';
+  src: url('/content/fonts/driftwood.ttf') format('ttf');
+}
+
+body {
+  font-family: 'driftwood', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  overflow: hidden;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.button-class {
+  padding: 10px 15px;
+  background-color: rgba(109, 184, 242, .8);
+  color: white;
+  border: 5px outset rgba(109, 184, 242, .5);
+  border-radius: 8px;
+  font-weight: bolder;
+
+  &:active {
+    border-width: 4px;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.small {
+    padding: 3px 8px;
+  }
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8
 }

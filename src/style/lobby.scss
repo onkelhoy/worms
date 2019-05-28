@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // * {
 //   -webkit-touch-callout: none; /* iOS Safari */
 //   -webkit-user-select: none; /* Safari */
@@ -78,4 +79,86 @@ canvas {
     right: 11px;
     bottom: 11px;
   }
+=======
+// * {
+//   -webkit-touch-callout: none; /* iOS Safari */
+//   -webkit-user-select: none; /* Safari */
+//    -khtml-user-select: none; /* Konqueror HTML */
+//      -moz-user-select: none; /* Firefox */
+//       -ms-user-select: none; /* Internet Explorer/Edge */
+//           user-select: none; /* Non-prefixed version, currently
+//                                 supported by Chrome and Opera */
+// }
+
+@import './init.scss';
+@import './lobby/settings.scss';
+@import './lobby/chat.scss';
+@import './lobby/loader.scss';
+
+body {
+  
+  h1 {
+    text-align: center;
+  }
+  
+  div.popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    height: 80px;
+
+    h3 {
+      background-color: rgba(0,0,0,.3);
+    }
+    p {
+      color: #333;
+    }
+  }
+
+  .wrapper {
+    .background {
+      img {
+        position: absolute;
+      }
+    }
+  }
+}
+
+@mixin absolute ($x, $y) {
+  position: absolute;
+  top: $y;
+  left: $x;
+}
+@mixin center () {
+  @include absolute(50%, 50%);
+  transform: translate(-50%, -50%);
+}
+
+.hide {
+  display: none;
+}
+
+canvas {
+  @include absolute(0, 0);
+}
+
+.wrapper {
+  z-index: 1;
+}
+.controlls {
+  z-index: 15;
+}
+
+.startbtn {  
+  z-index: 15;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+
+  &:active {
+    right: 11px;
+    bottom: 11px;
+  }
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8
 }

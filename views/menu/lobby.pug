@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 extends ./main.pug 
 
 block content 
@@ -88,4 +89,57 @@ block scripts
   script.
     let socket = io('/#{id}')
     
+=======
+extends ./main.pug 
+
+block content 
+  h1 Welcome to lobby
+
+  div.chatwrapper 
+    div.chat
+      div.messages
+      textarea(cols="30", rows="5" placeholder='say something')
+    div.button 
+
+  div.popup.hide
+    h3
+    p
+
+  div.spinner 
+
+  div.wrapper 
+    div#background
+    canvas#waterback
+    canvas#map
+    canvas#main
+    canvas#waterfront
+
+
+  div.textures 
+    each texture in textures 
+      img(src='/content/texture/'+texture)
+
+  div.masks 
+    each mask in masks 
+      img(src='/content/mask/'+mask)
+
+  div.backgrounds 
+    each background in backgrounds 
+      p=background
+  
+  div.colors 
+    div.body 
+      div.header 
+        div.view 
+
+  div.controlls 
+  
+  button.startbtn 
+    a start
+
+block scripts 
+  script.
+    let socket = io('/#{id}')
+    
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8
   script(src="/js/lobby.bundle.js")

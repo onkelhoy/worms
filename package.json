@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "worms",
   "version": "1.0.0",
@@ -60,3 +61,67 @@
     "socket.io": "^2.1.1"
   }
 }
+=======
+{
+  "name": "worms",
+  "version": "1.0.0",
+  "description": "Mobile online worms game",
+  "main": "server.js",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "scripts": {
+    "start": "cross-env MODE=prod node server.js",
+    "build": "cross-env MODE=prod webpack",
+    "dev-server": "cross-env MODE=dev nodemon server.js --watch",
+    "dev": "cross-env MODE=dev node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onkelhoy/worms.git"
+  },
+  "keywords": [
+    "worms",
+    "multiplayer",
+    "game"
+  ],
+  "author": "Henry Pap <onkelhoy@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onkelhoy/worms/issues"
+  },
+  "homepage": "https://github.com/onkelhoy/worms#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "cryptiles": ">=4.1.2",
+    "css-loader": "^0.28.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
+    "pug": "^2.0.3",
+    "pug-html-loader": "^1.1.5",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-middleware": "^3.5.2",
+    "webpack-hot-middleware": "^2.24.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cross-env": "^5.2.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "http": "0.0.0",
+    "image-outline": "^0.1.0",
+    "p5": "^0.6.1",
+    "simplex-noise": "^2.4.0",
+    "socket.io": "^2.2.0"
+  }
+}
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8

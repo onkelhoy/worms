@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './style/lobby.scss'
 import './lobby/chat'
 import './lobby/DOM'
@@ -26,3 +27,7 @@ function closePopup () {
 
   popup_elm.classList.toggle('hide')
 }
+=======
+import './style/lobby.scss'
+import './lobby/DOM'
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8

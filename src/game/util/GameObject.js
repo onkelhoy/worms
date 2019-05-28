@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Vector2 } from '../geometry/Vector'
 
 export default class GameObject extends Vector2 {
@@ -15,4 +16,27 @@ export default class GameObject extends Vector2 {
       ctx[mode]()
     ctx.closePath()
   }
+=======
+import { Vector2 } from '../geometry/Vector'
+
+export default class GameObject extends Vector2 {
+  constructor (x, y) {
+    super(x, y)
+  }
+
+  MoveTo (x, y) {
+    this.x = x 
+    this.y = y
+  } 
+  get position () { return this }
+
+  renderShape (ctx, color = 'black', mode = 'stroke', cb, lineWidth = 1) {
+    ctx.beginPath()
+      cb(ctx)
+      ctx.lineWidth = lineWidth
+      ctx[mode+'Style'] = color
+      ctx[mode]()
+    ctx.closePath()
+  }
+>>>>>>> 92864930941ff5be66afca76a24276c5a16939b8
 }
