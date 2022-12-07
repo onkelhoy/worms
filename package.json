@@ -48,10 +48,10 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "cross-env": "^5.2.0",
     "dotenv": "^5.0.1",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "express-session": "^1.15.6",
     "http": "0.0.0",
     "image-outline": "^0.1.0",
